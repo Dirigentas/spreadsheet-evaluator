@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Spreadsheet;
 
+use Spreadsheet\Recursion;
+
 class Calculations
 {
     public static function equal($response)
@@ -12,26 +14,28 @@ class Calculations
 
             foreach ($sheet['data'] as $key2 => &$line) {
 
-                foreach ($line as $key3 => &$cell) {
-                    if (str_contains((string) $cell, '=') && strlen($cell) === 3) {
-                        $equalCell = $cell;
-                        // echo $equalCell;
-                        echo(ord($equalCell[1]));
-                        echo '<br>';  
+                foreach ($line as $key3 => &$column) {
+                    if (str_contains((string) $column, '=') && strlen($column) === 3) {
+                        // echo $column . ' ';
+                        // echo $key1 . ' ';
+                        // echo $column[2] - 1 . ' ';
+                        // echo ord($column[1]) - 65;
+                        // echo '<br>';
+                        // $column = $response['sheets'][$key1]['data'][$column[2] - 1][ord($column[1]) - 65];
 
-                        if (ord($equalCell[1]) === $key2 + 65) {
-                            // echo $key2;
-                        }
+                        Recursion::equalRecursion($column, $key1, $response);
                     }
-                    // echo @$equalCell[0][1];
-                    // if (@$equalCell[0][1] == $key3) {
-                    //     echo $key3;
-                    // }
+                    
                 }
             }
         }
-        echo '<br><br>';    
-        // print_r($response['sheets'][2]);
+        // print_r($response['sheets'][21]['data']);
+        // echo '<br>';
+        // print_r($response['sheets'][22]['data']);
+        // echo '<br>';
+        print_r($response['sheets'][23]['data']);
+        // echo '<br>';
+        // print_r($response['sheets'][2]['data'][0][0]);
 
         // return self::sum();
     }
