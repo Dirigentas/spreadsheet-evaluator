@@ -23,7 +23,7 @@ class Api
         curl_close($ch);
         
         // return $response ? print_r($response): print_r('cURL Error ' . curl_error($ch));    
-        return Calculations::sum($response);
+        return Calculations::equal($response);
     }
 }
     
