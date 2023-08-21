@@ -9,8 +9,8 @@ class Recursion
     public static function equalRecursion($column, $key1, $response)
     {
         
-        if (!str_contains((string) $column, '=')) {
-            $column = $response['sheets'][$key1]['data'][$column[2] - 1][ord($column[1]) - 65];
+        if (str_contains((string) $response['sheets'][$key1]['data'][$column[2] - 1][ord($column[1]) - 65], '=')) {
+            $column = 2;
         } else {
             $column = 1;
         }

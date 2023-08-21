@@ -15,24 +15,26 @@ class Calculations
             foreach ($sheet['data'] as $key2 => &$line) {
 
                 foreach ($line as $key3 => &$column) {
-                    if (str_contains((string) $column, '=') && strlen($column) === 3) {
-                        // echo $column . ' ';
-                        // echo $key1 . ' ';
-                        // echo $column[2] - 1 . ' ';
-                        // echo ord($column[1]) - 65;
-                        // echo '<br>';
-                        // $column = $response['sheets'][$key1]['data'][$column[2] - 1][ord($column[1]) - 65];
+                    if (strlen((string) $column) === 3 && str_contains((string) $column, '=') || str_contains((string) $column, '*')) {
+                        
+                            if (!str_contains((string) $response['sheets'][$key1]['data'][$column[2] - 1][ord($column[1]) - 65], '=')) {
+                                $column = $response['sheets'][$key1]['data'][$column[2] - 1][ord($column[1]) - 65];
+                            } else {
+                                $column[0] = '*';
+                                return self::equal($response);
+                            }
 
-                        Recursion::equalRecursion($column, $key1, $response);
+
+                        // $column = Recursion::equalRecursion($column, $key1, $response);
                     }
                     
                 }
             }
         }
-        // print_r($response['sheets'][21]['data']);
-        // echo '<br>';
-        // print_r($response['sheets'][22]['data']);
-        // echo '<br>';
+        print_r($response['sheets'][21]['data']);
+        echo '<br><br>';
+        print_r($response['sheets'][22]['data']);
+        echo '<br><br>';
         print_r($response['sheets'][23]['data']);
         // echo '<br>';
         // print_r($response['sheets'][2]['data'][0][0]);
