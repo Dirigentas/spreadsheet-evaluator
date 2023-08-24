@@ -21,7 +21,7 @@ class Calculations
                     // if ($key3 == $key) {
                     //         // echo 'continue ' . $key3 . ' ' . $column . '<br>';
                     //         continue;
-                        }
+                    // }
                     if (strlen((string) $column) === 3 && str_contains((string) $column, '=')) {
                         if (!str_contains((string) $response['sheets'][23]['data'][$column[2] - 1][ord($column[1]) - 65], '=')) {
                             $column = $response['sheets'][23]['data'][$column[2] - 1][ord($column[1]) - 65];
@@ -36,7 +36,7 @@ class Calculations
         }
 
         
-            $response = recursion($response);
+        $response = recursion($response);
    
         // echo '<br><br>';
         // print_r($response['sheets'][21]['data']);
