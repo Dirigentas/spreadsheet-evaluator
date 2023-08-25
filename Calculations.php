@@ -1,7 +1,7 @@
 <?php
 
 // jei kartojasi key3, tai daryti continue
-// pagrindin4 pamoka, kad kai yra atskiroj funkcijoj, & prie6 parametr1 neppakeiia originalo, dėl to neatsnaujina duomenys
+// pagrindinė pamoka, kad kai yra atskiroj funkcijoj, & prieš parametrą nepakeičia originalo, dėl to neatsnaujina duomenys
 
 declare(strict_types=1);
 
@@ -13,21 +13,29 @@ class Calculations
 {
     public static function equal($response)
     {
-        function recursion($response) {
-            // foreach ($response['sheets'] as $key1 => &$sheet) {
-            // }
-            foreach ($response['sheets'][23]['data'] as $key2 => &$line) {
-                foreach ($line as $key3 => &$column) {
-                    // if ($key3 == $key) {
-                    //         // echo 'continue ' . $key3 . ' ' . $column . '<br>';
-                    //         continue;
-                    // }
-                    if (strlen((string) $column) === 3 && str_contains((string) $column, '=')) {
-                        if (!str_contains((string) $response['sheets'][23]['data'][$column[2] - 1][ord($column[1]) - 65], '=')) {
-                            $column = $response['sheets'][23]['data'][$column[2] - 1][ord($column[1]) - 65];
-                        } else {
-                            // recursion($line, $response, 23, $key3);
-                            // $column = $response['sheets'][$key1]['data'][$column[2] - 1][ord($column[1]) - 65];
+        function recursion($response, $key = []) {
+            foreach ($response['sheets'] as $key1 => &$sheet) {
+                foreach ($sheet['data'] as $key2 => &$line) {
+                    echo 'DIDELIS Nr ' . $key2 . ' pradzia<br>';
+                    foreach ($line as $key3 => &$column) {
+                        echo 'MAZAS Nr ' . $key3 . ' pradzia<br>';
+                        if (in_array($key3, $key)) {
+                                echo 'continue ' . $key3 . ' ' . $column . '<br>';
+                                continue;
+                        }
+                        if (strlen((string) $column) === 3 && str_contains((string) $column, '=')) {
+                            if (!str_contains((string) $response['sheets'][$key1]['data'][$column[2] - 1][ord($column[1]) - 65], '=')) {
+                                echo $column . ' equal<br>';
+                                $column = $response['sheets'][$key1]['data'][$column[2] - 1][ord($column[1]) - 65];
+                            } else {
+                                $keysArray = $key;
+                                $keysArray[] = $key3;
+                                print_r($keysArray);
+                                echo 'recursion<br>';
+                                recursion($response, $keysArray);
+                                echo $column . ' equal<br>';
+                                $column = $response['sheets'][$key1]['data'][$column[2] - 1][ord($column[1]) - 65];
+                            }
                         }
                     }
                 }
@@ -38,10 +46,10 @@ class Calculations
         
         $response = recursion($response);
    
-        // echo '<br><br>';
-        // print_r($response['sheets'][21]['data']);
-        // print_r($response['sheets'][22]['data']);
-        // echo '<br><br>';
+        print_r($response['sheets'][21]['data']);
+        echo '<br><br>';
+        print_r($response['sheets'][22]['data']);
+        echo '<br><br>';
         print_r($response['sheets'][23]['data']);
         // echo '<br>';
         // print_r($response['sheets'][2]['data'][0][0]);
