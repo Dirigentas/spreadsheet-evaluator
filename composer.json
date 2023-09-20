@@ -1,0 +1,15 @@
+{
+    "name": "dirigentas/spreadsheet-evaluator",
+    "autoload": {
+        "psr-4": {
+            "Aras\\SpreadsheetEvaluator\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "aras",
+            "email": "minelga.aras@gmail.com"
+        }
+    ],
+    "require": {}
+}
