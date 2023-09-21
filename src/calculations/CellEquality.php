@@ -12,6 +12,8 @@ class CellEquality
     public static function equalToCell($input)
     {
         function recursion($input, $lineColumnNoArrayToSkip = []) {
+            $equilityIdentifier = '=';
+
             foreach ($input['sheets'] as $sheetNo => &$sheet) {
                 foreach ($sheet['data'] as $lineNo => &$line) {
                     foreach ($line as $cellColumnNo => &$cell) {
@@ -20,7 +22,7 @@ class CellEquality
                         }
                         if (
                             strlen((string) $cell) === 3
-                            && str_contains((string) $cell, '=')
+                            && str_contains((string) $cell, $equilityIdentifier)
                         ) {
                             if (!str_contains((string) $input['sheets'][$sheetNo]['data'][$cell[2] - 1][ord($cell[1]) - 65], '=')) {
                                 $cell = $input['sheets'][$sheetNo]['data'][$cell[2] - 1][ord($cell[1]) - 65];
@@ -39,6 +41,11 @@ class CellEquality
         }
 
         $input = recursion($input);
+
+        // print_r($input['sheets'][2]);
+        // print_r($input['sheets'][21]);
+        // print_r($input['sheets'][22]);
+        // print_r($input['sheets'][23]);
    
         return $input;
     }
