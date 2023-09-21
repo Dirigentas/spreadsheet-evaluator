@@ -7,9 +7,9 @@ declare(strict_types=1);
 
 namespace Aras\SpreadsheetEvaluator\calculations;
 
-class CellEquality
+class ReferenceCell
 {
-    public static function equalToCell($input)
+    public static function ReferenceToCell($input)
     {
         function recursion($input, $lineColumnNoArrayToSkip = []) {
             $equilityIdentifier = '=';

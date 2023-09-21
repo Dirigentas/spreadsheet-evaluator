@@ -9,10 +9,11 @@ declare(strict_types=1);
 namespace Aras\SpreadsheetEvaluator;
 
 use Aras\SpreadsheetEvaluator\ApiReader;
-use Aras\SpreadsheetEvaluator\calculations\CellEquality;
-use Aras\SpreadsheetEvaluator\calculations\CellsSum;
-use Aras\SpreadsheetEvaluator\calculations\CellsMultiply;
-use Aras\SpreadsheetEvaluator\calculations\CellsDivide;
+use Aras\SpreadsheetEvaluator\calculations\ReferenceCell;
+use Aras\SpreadsheetEvaluator\calculations\SumCells;
+use Aras\SpreadsheetEvaluator\calculations\MultiplyCells;
+use Aras\SpreadsheetEvaluator\calculations\DivideCells;
+use Aras\SpreadsheetEvaluator\calculations\EqualCells;
 
 /**
  * Class Control controls all pats of the solution.
@@ -28,13 +29,15 @@ final class AppControl
     {
         $input = ApiReader::takeData();
 
-        $output = CellEquality::equalToCell($input);
+        $output = ReferenceCell::referenceToCell($input);
 
-        $output = CellsSum::equalToCellsSum($output);
+        $output = SumCells::equalToCellsSum($output);
 
-        $output = CellsMultiply::equalToCellsMultiply($output);
+        $output = MultiplyCells::equalToCellsMultiply($output);
 
-        $output = CellsDivide::equalToCellsDivide($output);
+        $output = DivideCells::equalToCellsDivide($output);
+
+        $output = EqualCells::isCellsEqual($output);
 
         self::writeToStdout($output);
     }
