@@ -22,13 +22,8 @@
 -   no libraries (except for testing)
 -   an easy way to start the solution
 -   short documentation in the code itself
--   input data is loaded from 'input.txt'
--   solution outputs data to the screen
 -   flexible enough to allow adding new rules and modifying existing ones easily
-
-    ### Features added by the author
-
-    -   OOP
+-   OOP
 
 ## 😃 Author
 

@@ -27,9 +27,9 @@ final class AppControl
 
         $output = CellEquality::equalToCell($input);
 
-        $output = CellsSum::equalToCellsSum($output);
+        // $output = CellsSum::equalToCellsSum($output);
 
-        // self::writeToStdout($output);
+        self::writeToStdout($output);
     }
 
     /**
