@@ -24,14 +24,14 @@ class CellEquality
                             strlen((string) $cell) === 3
                             && str_contains((string) $cell, $equilityIdentifier)
                         ) {
-                            if (!str_contains((string) $input['sheets'][$sheetNo]['data'][$cell[2] - 1][ord($cell[1]) - 65], '=')) {
-                                $cell = $input['sheets'][$sheetNo]['data'][$cell[2] - 1][ord($cell[1]) - 65];
+                            if (!str_contains((string) $input['sheets'][$sheetNo]['data'][$cell[2] - Constants::ARRAY_TO_EXCEL][ord($cell[1]) - Constants::ASCII], '=')) {
+                                $cell = $input['sheets'][$sheetNo]['data'][$cell[2] - Constants::ARRAY_TO_EXCEL][ord($cell[1]) - Constants::ASCII];
                             } else {
                                 $lineColumnNoArrayToSkip[] = $cellColumnNo;
 
                                 recursion($input, $lineColumnNoArrayToSkip);
 
-                                $cell = $input['sheets'][$sheetNo]['data'][$cell[2] - 1][ord($cell[1]) - 65];
+                                $cell = $input['sheets'][$sheetNo]['data'][$cell[2] - Constants::ARRAY_TO_EXCEL][ord($cell[1]) - Constants::ASCII];
                             }
                         }
                     }

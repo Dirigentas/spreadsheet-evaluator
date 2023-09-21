@@ -33,7 +33,7 @@ final class AppControl
 
         $output = CellsMultiply::equalToCellsMultiply($output);
 
-        // self::writeToStdout($output);
+        self::writeToStdout($output);
     }
 
     /**

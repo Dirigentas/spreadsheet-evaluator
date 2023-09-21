@@ -8,16 +8,14 @@ class CellsMultiply
 {
     public static function equalToCellsMultiply($output)
     {
-        $multiplyIdentifier = 'MULTIPLY';
-
         foreach ($output['sheets'] as $sheetNo => &$sheet) {
             foreach ($sheet['data'] as $lineNo => &$line) {
                 foreach ($line as $cellColumnNo => &$cell) {
-                    if (str_contains((string) $cell, $multiplyIdentifier)) {
-                        $multiplyArray = explode(', ', substr($cell, strlen($multiplyIdentifier) + 2, strlen($cell) - strlen($multiplyIdentifier) - 3));
+                    if (str_contains((string) $cell, Constants::MULTIPLY_IDENTIFIER)) {
+                        $multiplyArray = explode(', ', substr($cell, strlen(Constants::MULTIPLY_IDENTIFIER) + 2, strlen($cell) - strlen(Constants::MULTIPLY_IDENTIFIER) - 3));
                         foreach ($multiplyArray as &$value) {
                             if (ctype_alpha($value[0])) {
-                                $value = $output['sheets'][$sheetNo]['data'][$value[1] - 1][ord($value[0]) - 65];
+                                $value = $output['sheets'][$sheetNo]['data'][$value[1] - Constants::ARRAY_TO_EXCEL][ord($value[0]) - Constants::ASCII];
                             }
                         }
                         $cell = array_product($multiplyArray);
