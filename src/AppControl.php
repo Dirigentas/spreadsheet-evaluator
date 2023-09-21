@@ -10,6 +10,8 @@ namespace Aras\SpreadsheetEvaluator;
 
 use Aras\SpreadsheetEvaluator\ApiReader;
 use Aras\SpreadsheetEvaluator\calculations\CellEquality;
+use Aras\SpreadsheetEvaluator\calculations\CellsSum;
+use Aras\SpreadsheetEvaluator\calculations\CellsMultiply;
 
 /**
  * Class Control controls all pats of the solution.
@@ -27,9 +29,11 @@ final class AppControl
 
         $output = CellEquality::equalToCell($input);
 
-        // $output = CellsSum::equalToCellsSum($output);
+        $output = CellsSum::equalToCellsSum($output);
 
-        self::writeToStdout($output);
+        $output = CellsMultiply::equalToCellsMultiply($output);
+
+        // self::writeToStdout($output);
     }
 
     /**

@@ -2,46 +2,33 @@
 
 declare(strict_types=1);
 
-namespace Aras\SpreadsheetEvaluator;
+namespace Aras\SpreadsheetEvaluator\calculations;
 
 class CellsSum
 {
-    /**
-     * find SUM string
-     * identify cells to sum
-     * do the sum
-     * replace string with actual sum
-     */
-    public static function equalToCellsSum($response)
+    public static function equalToCellsSum($output)
     {
-        foreach ($response['sheets'] as $key1 => &$sheet) {
-            // print_r($sheet['data']);
-            // echo '<br>';
-            foreach ($sheet['data'] as $key2 => &$line) {
-                // print_r($line);
-                // echo '<br>';
-                foreach ($line as $key3 => &$cell) {
+        foreach ($output['sheets'] as $sheetNo => &$sheet) {
+            foreach ($sheet['data'] as $lineNo => &$line) {
+                foreach ($line as $cellColumnNo => &$cell) {
                     if (str_contains((string) $cell, 'SUM')) {
-                        $sumCells = explode(', ', substr($cell, 5, strlen($cell) - 6));
-                        // echo(ord($sumCells[0][0]));
-                        // $cell = 22 + 212212;
-                        if (ord($sumCells[0][0]) === $key2 + 65) {
-                            // echo $key2;
+                        $sumArray = explode(', ', substr($cell, 5, strlen($cell) - 6));
+                        foreach ($sumArray as $sumArrayKey => &$value) {
+                            if (ctype_alpha($value[0])) {
+                                $value = $output['sheets'][$sheetNo]['data'][$value[1] - 1][ord($value[0]) - 65];
+                            }
                         }
+                        $cell = array_sum($sumArray);
                     }
-                    // echo @$sumCells[0][1];
-                    // if (@$sumCells[0][1] == $key3) {
-                    //     echo $key3;
-                    // }
                 }
             }
         }
-        echo '<br><br>';    
-        // print_r($response['sheets'][3]);
-           
-        // print_r($input['sheets'][2]['data']);
 
-        // return self::multiply();
+        // print_r($output['sheets'][3]);
+        // print_r($output['sheets'][4]);
+        // print_r($output['sheets'][5]);
+           
+        return $output;
     }
     
     
