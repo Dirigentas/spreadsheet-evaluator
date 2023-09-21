@@ -12,6 +12,7 @@ use Aras\SpreadsheetEvaluator\ApiReader;
 use Aras\SpreadsheetEvaluator\calculations\CellEquality;
 use Aras\SpreadsheetEvaluator\calculations\CellsSum;
 use Aras\SpreadsheetEvaluator\calculations\CellsMultiply;
+use Aras\SpreadsheetEvaluator\calculations\CellsDivide;
 
 /**
  * Class Control controls all pats of the solution.
@@ -32,6 +33,8 @@ final class AppControl
         $output = CellsSum::equalToCellsSum($output);
 
         $output = CellsMultiply::equalToCellsMultiply($output);
+
+        $output = CellsDivide::equalToCellsDivide($output);
 
         self::writeToStdout($output);
     }

@@ -1,6 +1,9 @@
 - \+ autoloader ištrinti
 - \+ composer irasyt
-- fix project structure, modulize everything
-- readme fix
+- \+ readme fix
+- \+ fix project structure, modulize everything
+- \+ iškeltos pasikartojančios konstantos į atskirą failą
+- \+ suteikti vardai ir padaryti kaip atskiri variables naudojamoms array reikšmėms
+- PHPdoc surašyti
 - write tests
 - fix PSR-12 with PHPsniff

@@ -12,10 +12,14 @@ class CellsMultiply
             foreach ($sheet['data'] as $lineNo => &$line) {
                 foreach ($line as $cellColumnNo => &$cell) {
                     if (str_contains((string) $cell, Constants::MULTIPLY_IDENTIFIER)) {
-                        $multiplyArray = explode(', ', substr($cell, strlen(Constants::MULTIPLY_IDENTIFIER) + 2, strlen($cell) - strlen(Constants::MULTIPLY_IDENTIFIER) - 3));
+                        $multiplyArray = explode(', ', substr($cell, strlen(Constants::MULTIPLY_IDENTIFIER) + Constants::SYMBOLS_BEFORE, strlen($cell) - strlen(Constants::MULTIPLY_IDENTIFIER) - Constants::SYMBOLS_BEFORE_AFTER));
                         foreach ($multiplyArray as &$value) {
-                            if (ctype_alpha($value[0])) {
-                                $value = $output['sheets'][$sheetNo]['data'][$value[1] - Constants::ARRAY_TO_EXCEL][ord($value[0]) - Constants::ASCII];
+                            $columnLetter = $value[0];
+                            
+                            if (ctype_alpha($columnLetter)) {
+                                $lineNumber = $value[1];
+
+                                $value = $output['sheets'][$sheetNo]['data'][$lineNumber - Constants::ARRAY_TO_EXCEL][ord($columnLetter) - Constants::ASCII];
                             }
                         }
                         $cell = array_product($multiplyArray);
