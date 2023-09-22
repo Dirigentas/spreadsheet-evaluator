@@ -11,7 +11,6 @@
     -   composer install
     -   sudo apt-get install php-curl
     -   composer run-script start
-    -   composer run-script test
 
 ## 🎯 Project features/goals from task requirements
 

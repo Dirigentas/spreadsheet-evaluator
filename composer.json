@@ -11,5 +11,7 @@
             "email": "minelga.aras@gmail.com"
         }
     ],
-    "require": {}
+    "scripts": {
+        "start": "php public/index.php"
+    }
 }
