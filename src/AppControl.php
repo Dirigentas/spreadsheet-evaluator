@@ -15,6 +15,7 @@ use Aras\SpreadsheetEvaluator\calculations\MultiplyCells;
 use Aras\SpreadsheetEvaluator\calculations\DivideCells;
 use Aras\SpreadsheetEvaluator\calculations\EqualCells;
 use Aras\SpreadsheetEvaluator\calculations\NegatesCell;
+use Aras\SpreadsheetEvaluator\calculations\AllTrueCell;
 
 /**
  * Class Control controls all pats of the solution.
@@ -42,6 +43,8 @@ final class AppControl
 
         $output = NegatesCell::equalOppositeCell($output);
 
+        $output = AllTrueCell::checkIfAllTrue($output);
+
         self::writeToStdout($output);
     }
 
@@ -54,6 +57,6 @@ final class AppControl
      */
     public static function writeToStdout(array $output): void
     {
-        print_r($output);
+        var_dump($output);
     }
 }

@@ -22,6 +22,8 @@ class Constants
 
     const OPPOSITE_IDENTIFIER = 'NOT';
 
+    const ALL_TRUE_IDENTIFIER = 'AND';
+    
     const SYMBOLS_BEFORE = 2;
 
     const SYMBOLS_BEFORE_AFTER = 3;

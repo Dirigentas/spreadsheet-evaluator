@@ -23,7 +23,7 @@ class NegatesCell
                                 $trimCell = $output['sheets'][$sheetNo]['data'][$lineNumber - Constants::ARRAY_TO_EXCEL][ord($trimCell) - Constants::ASCII];
                             }
 
-                        $cell = var_export(!$trimCell, true);
+                        $cell = !$trimCell;
                     }
                 }
             }
