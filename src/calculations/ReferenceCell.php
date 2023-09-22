@@ -12,8 +12,6 @@ class ReferenceCell
     public static function ReferenceToCell($input)
     {
         function recursion($input, $lineColumnNoArrayToSkip = []) {
-            $equilityIdentifier = '=';
-
             foreach ($input['sheets'] as $sheetNo => &$sheet) {
                 foreach ($sheet['data'] as $lineNo => &$line) {
                     foreach ($line as $cellColumnNo => &$cell) {
@@ -22,7 +20,7 @@ class ReferenceCell
                         }
                         if (
                             strlen((string) $cell) === 3
-                            && str_contains((string) $cell, $equilityIdentifier)
+                            && str_contains((string) $cell, Constants::REFERENCE_IDENTIFIER)
                         ) {
                             $columnLetter = $cell[1];
 

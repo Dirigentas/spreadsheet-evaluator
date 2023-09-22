@@ -14,6 +14,7 @@ use Aras\SpreadsheetEvaluator\calculations\SumCells;
 use Aras\SpreadsheetEvaluator\calculations\MultiplyCells;
 use Aras\SpreadsheetEvaluator\calculations\DivideCells;
 use Aras\SpreadsheetEvaluator\calculations\EqualCells;
+use Aras\SpreadsheetEvaluator\calculations\NegatesCell;
 
 /**
  * Class Control controls all pats of the solution.
@@ -38,6 +39,8 @@ final class AppControl
         $output = DivideCells::equalToCellsDivide($output);
 
         $output = EqualCells::isCellsEqual($output);
+
+        $output = NegatesCell::equalOppositeCell($output);
 
         self::writeToStdout($output);
     }
