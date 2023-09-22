@@ -4,6 +4,6 @@
 - \+ fix project structure, modulize everything
 - \+ iškeltos pasikartojančios konstantos į atskirą failą
 - \+ suteikti vardai ir padaryti kaip atskiri variables naudojamoms array reikšmėms
-- PHPdoc surašyti
-- write tests
+- PHPdo
+- tests
 - fix PSR-12 with PHPsniff
